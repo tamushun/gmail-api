@@ -1,0 +1,17 @@
+ass
+*.jar
+*.war
+*.ear
+.DS_Store
+target/
+bin/
+node_modules
+.idea/
+.sublime-grunt.cache
+.settings
+.project
+.classpath
+.sass-cache
+*.iml
+dump.rdb
+.metadata/
