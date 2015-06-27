@@ -15,3 +15,4 @@ node_modules
 *.iml
 dump.rdb
 .metadata/
+*/client_secret.json
