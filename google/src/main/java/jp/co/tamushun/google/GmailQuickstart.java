@@ -84,6 +84,10 @@ public class GmailQuickstart {
 	public static void main(String[] args) throws IOException {
 		// Build a new authorized API client service.
 		Gmail service = getGmailService();
+		quickStartSample(service);
+	}
+
+	public static void quickStartSample(Gmail service) throws IOException {
 
 		// Print the labels in the user's account.
 		String user = "me";
@@ -97,6 +101,7 @@ public class GmailQuickstart {
 				System.out.printf("- %s\n", label.getName());
 			}
 		}
+
 	}
 
 }
