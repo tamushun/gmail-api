@@ -7,8 +7,30 @@ import java.util.List;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
+import com.google.api.services.gmail.model.ModifyMessageRequest;
 
 public class MessagesApi {
+
+	/**
+	 * Get Message with given ID.
+	 *
+	 * @param service
+	 *            Authorized Gmail API instance.
+	 * @param userId
+	 *            User's email address. The special value "me" can be used to
+	 *            indicate the authenticated user.
+	 * @param messageId
+	 *            ID of Message to retrieve.
+	 * @return Message Retrieved Message.
+	 * @throws IOException
+	 */
+	public static Message getMessage(Gmail service, String userId, String messageId) throws IOException {
+		Message message = service.users().messages().get(userId, messageId).execute();
+
+		System.out.println("Message snippet: " + message.getSnippet());
+
+		return message;
+	}
 
 	/**
 	 * List all Messages of the user's mailbox matching the query.
@@ -74,6 +96,31 @@ public class MessagesApi {
 		}
 
 		return messages;
+	}
+
+	/**
+	 * Modify the labels a message is associated with.
+	 *
+	 * @param service
+	 *            Authorized Gmail API instance.
+	 * @param userId
+	 *            User's email address. The special value "me" can be used to
+	 *            indicate the authenticated user.
+	 * @param messageId
+	 *            ID of Message to Modify.
+	 * @param labelsToAdd
+	 *            List of label ids to add.
+	 * @param labelsToRemove
+	 *            List of label ids to remove.
+	 * @throws IOException
+	 */
+	public static void modifyMessage(Gmail service, String userId, String messageId, List<String> labelsToAdd, List<String> labelsToRemove)
+			throws IOException {
+		ModifyMessageRequest mods = new ModifyMessageRequest().setAddLabelIds(labelsToAdd).setRemoveLabelIds(labelsToRemove);
+		Message message = service.users().messages().modify(userId, messageId, mods).execute();
+
+		System.out.println("Message id: " + message.getId());
+		System.out.println(message.toPrettyString());
 	}
 
 }
