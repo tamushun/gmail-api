@@ -39,7 +39,7 @@ public class GmailQuickstart {
 	private static HttpTransport HTTP_TRANSPORT;
 
 	/** Global instance of the scopes required by this quickstart. */
-	private static final List<String> SCOPES = Arrays.asList(GmailScopes.GMAIL_LABELS);
+	private static final List<String> SCOPES = Arrays.asList(GmailScopes.MAIL_GOOGLE_COM);
 
 	static {
 		try {

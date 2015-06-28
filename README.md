@@ -10,3 +10,6 @@ Google Developers ConsoleからDLしてくる。
 - GmailAPI Quickstart Java
   - https://developers.google.com/gmail/api/quickstart/java
 
+## 注意
+- ~/.credential/配下を一度消さないとscope権限の変更は反映されない。
+
