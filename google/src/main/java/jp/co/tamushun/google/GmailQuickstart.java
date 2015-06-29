@@ -113,6 +113,12 @@ public class GmailQuickstart {
 			text += "```" + title + "```\n";
 			text += "```" + new String(decodedBody) + "```";
 			System.out.println(text);
+
+			// Slackに通知
+			String urlEncodedText = URLEncoder.encode(text, "utf-8");
+			String url = "https://slack.com/api/chat.postMessage?token=" + Constants.SLACK_API_KEY + "&channel=" + Constants.SLACK_MY_ID
+					+ "&text=" + urlEncodedText + Constants.FROM_BOT;
+			System.out.println(HttpUtils.getContents(url));
 		}
 
 	}
