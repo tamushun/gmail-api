@@ -3,7 +3,9 @@ package jp.co.tamushun.google;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -103,6 +105,8 @@ public class GmailQuickstart {
 					break;
 				}
 			}
+			String bodyEncodedByBase64 = String.valueOf(message.getPayload().getBody().getData());
+			byte[] decodedBody = Base64.getUrlDecoder().decode(bodyEncodedByBase64);
 		}
 
 	}
