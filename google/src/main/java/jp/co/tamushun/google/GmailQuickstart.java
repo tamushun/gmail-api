@@ -21,6 +21,7 @@ import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Label;
 import com.google.api.services.gmail.model.ListLabelsResponse;
 import com.google.api.services.gmail.model.Message;
+import com.google.api.services.gmail.model.MessagePartHeader;
 
 public class GmailQuickstart {
 	/** Application name. */
@@ -90,6 +91,19 @@ public class GmailQuickstart {
 		// 該当するメールリスト取得
 		List<Message> messages = MessagesApi.listMessagesMatchingQuery(service, "me",
 				"((label:from nagios) OR (label:from aws_alert)) is:unread");
+
+		for (Message message : messages) {
+			// 1件ずつメールの詳細情報を取得（list APIでは詳細情報が取得できない）
+			message = MessagesApi.getMessage(service, "me", message.getId());
+			List<MessagePartHeader> messagePartHeaders = message.getPayload().getHeaders();
+			String title = "";
+			for (MessagePartHeader messagePartHeader : messagePartHeaders) {
+				if (messagePartHeader.getName().equals("Subject")) {
+					title = messagePartHeader.getValue();
+					break;
+				}
+			}
+		}
 
 	}
 
