@@ -65,6 +65,21 @@
           <mainClass>jp.co.tamushun.google.GmailQuickstart</mainClass>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>jp.co.tamushun.google.GmailQuickstart</mainClass>
+              <addClasspath>true</addClasspath>
+              <addExtensions>false</addExtensions>
+              <classpathPrefix></classpathPrefix>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
