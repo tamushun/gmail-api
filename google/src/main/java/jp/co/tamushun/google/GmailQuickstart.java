@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -119,6 +120,12 @@ public class GmailQuickstart {
 			String url = "https://slack.com/api/chat.postMessage?token=" + Constants.SLACK_API_KEY + "&channel=" + Constants.SLACK_MY_ID
 					+ "&text=" + urlEncodedText + Constants.FROM_BOT;
 			System.out.println(HttpUtils.getContents(url));
+
+			// labelの付け替え（未読→既読）
+			List<String> labelsToAdd = new ArrayList<String>();
+			List<String> labelsToRemove = new ArrayList<String>();
+			labelsToRemove.add("UNREAD");
+			MessagesApi.modifyMessage(service, "me", message.getId(), labelsToAdd, labelsToRemove);
 		}
 
 	}
