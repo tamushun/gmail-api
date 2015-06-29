@@ -20,6 +20,7 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Label;
 import com.google.api.services.gmail.model.ListLabelsResponse;
+import com.google.api.services.gmail.model.Message;
 
 public class GmailQuickstart {
 	/** Application name. */
@@ -84,7 +85,12 @@ public class GmailQuickstart {
 	public static void main(String[] args) throws IOException {
 		// Build a new authorized API client service.
 		Gmail service = getGmailService();
-		quickStartSample(service);
+		// quickStartSample(service);
+
+		// 該当するメールリスト取得
+		List<Message> messages = MessagesApi.listMessagesMatchingQuery(service, "me",
+				"((label:from nagios) OR (label:from aws_alert)) is:unread");
+
 	}
 
 	public static void quickStartSample(Gmail service) throws IOException {
