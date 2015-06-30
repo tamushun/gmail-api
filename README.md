@@ -2,6 +2,7 @@
 
 ## alias
 alias exec-gmail-api='cd ~/gmail-api/google/ ; pwd ; mvn install -Dmaven.test.skip=true ; mvn exec:java -Dmaven.test.skip=true'
+alias exec-gmail-api-jar='java -jar ~/gmail-api/google/target/google-0.0.1.jar'
 
 ## `.gitignore`しているファイル
 - `client_secret.json`
@@ -32,4 +33,10 @@ alias exec-gmail-api='cd ~/gmail-api/google/ ; pwd ; mvn install -Dmaven.test.sk
   - https://api.slack.com/methods/chat.postMessage
   - `channel`として使えるのは、`%23チャンネル名`・`チャンネルID`
     - `as_user`が`false`なら、`channel`として`%40ユーザー名`・`ユーザーID`も使える
+
+### Etc
+- mavenでjarファイル実行環境を作る（maven-jar-plugin＆maven-shade-plugin）
+  - http://tomoyamkung.net/2014/01/23/java-spring-standalone-jar/#09
+- MavenでMANIFEST.MFを取り込む（maven-jar-plugin）
+  - http://namihira.hatenablog.com/entry/2012/09/01/111901
 
