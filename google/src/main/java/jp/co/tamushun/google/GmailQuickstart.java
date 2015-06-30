@@ -113,6 +113,7 @@ public class GmailQuickstart {
 			String text = "@channel alert\n";
 			text += "```" + title + "```\n";
 			text += "```" + new String(decodedBody) + "```";
+			text = text.replaceAll("\r\n", "\n");
 			System.out.println(text);
 
 			// Slackに通知
