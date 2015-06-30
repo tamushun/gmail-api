@@ -112,14 +112,15 @@ public class GmailQuickstart {
 			// Slackに送る文言作成
 			String text = "@channel alert\n";
 			text += "```" + title + "```\n";
-			text += "```" + new String(decodedBody) + "```";
+			if (!title.matches(".*RECOVERY.*"))
+				text += "```" + new String(decodedBody) + "```";
 			text = text.replaceAll("\r\n", "\n");
 			System.out.println(text);
 
 			// Slackに通知
 			String urlEncodedText = URLEncoder.encode(text, "utf-8");
-			String url = "https://slack.com/api/chat.postMessage?token=" + Constants.SLACK_API_KEY + "&channel=" + Constants.SLACK_MY_ID
-					+ "&text=" + urlEncodedText + Constants.FROM_BOT;
+			String url = "https://slack.com/api/chat.postMessage?token=" + Constants.SLACK_API_KEY + "&channel="
+					+ Constants.SLACK_ALERT_CHANNEL + "&text=" + urlEncodedText + Constants.FROM_BOT;
 			System.out.println(HttpUtils.getContents(url));
 
 			// labelの付け替え（未読→既読）
