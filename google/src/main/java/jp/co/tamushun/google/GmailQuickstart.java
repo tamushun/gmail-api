@@ -110,7 +110,7 @@ public class GmailQuickstart {
 			byte[] decodedBody = Base64.getUrlDecoder().decode(bodyEncodedByBase64);
 
 			// Slackに送る文言作成
-			String text = "alert\n";
+			String text = "@channel alert\n";
 			text += "```" + title + "```\n";
 			text += "```" + new String(decodedBody) + "```";
 			System.out.println(text);
