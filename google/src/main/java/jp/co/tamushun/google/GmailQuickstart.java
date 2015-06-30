@@ -110,7 +110,7 @@ public class GmailQuickstart {
 			byte[] decodedBody = Base64.getUrlDecoder().decode(bodyEncodedByBase64);
 
 			// Slackに送る文言作成
-			String text = "@channel alert\n";
+			String text = "@channel: alert\n";
 			text += "```" + title + "```\n";
 			if (!title.matches(".*RECOVERY.*"))
 				text += "```" + new String(decodedBody) + "```";
@@ -120,7 +120,7 @@ public class GmailQuickstart {
 			// Slackに通知
 			String urlEncodedText = URLEncoder.encode(text, "utf-8");
 			String url = "https://slack.com/api/chat.postMessage?token=" + Constants.SLACK_API_KEY + "&channel="
-					+ Constants.SLACK_ALERT_CHANNEL + "&text=" + urlEncodedText + Constants.FROM_BOT;
+					+ Constants.SLACK_ALERT_CHANNEL + "&text=" + urlEncodedText + Constants.FROM_BOT + "&link_names=1";
 			System.out.println(HttpUtils.getContents(url));
 
 			// labelの付け替え（未読→既読）
